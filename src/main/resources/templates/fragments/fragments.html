@@ -26,6 +26,11 @@
           ><img alt="logo" th:src="@{/imgs/logo.png}" class="logo"
         /></a>
         <nav>
+          <div>
+            Logged User: <span sec:authentication="name"></span> Role:
+            <span sec:authentication="principal.authorities"></span>
+            <a href="/logout" class="btn btn-sm btn-danger">logout</a>
+          </div>
           <a th:href="@{/pizzas}" class="btn btn-warning font-weight-bold hov"
             >Elenco pizze</a
           >

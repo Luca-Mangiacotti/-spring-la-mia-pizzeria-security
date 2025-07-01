@@ -12,7 +12,7 @@
     <main class="text-center overflow-x-hidden" th:object="${ingredient}">
       <h1 class="mt-5 mb-5">Lista degli ingredienti</h1>
       <div class="container">
-        <a th:href="@{ingredients/create}" class="btn btn-warning mb-5"
+        <a th:href="@{ingredients/create}" class="btn btn-warning mb-5" sec:authorize="hasAuthority('ADMIN')"
           >Aggiungi un nuovo Ingrediente</a
         >
         <u class="container-sm">
@@ -24,7 +24,7 @@
 
             <a
               th:href="@{ingredients/edit/{id} (id=${ingredient.id})}"
-              class="btn btn-warning btn-sm"
+              class="btn btn-warning btn-sm" sec:authorize="hasAuthority('ADMIN')"
               >modifica</a
             >
            <div>
@@ -34,6 +34,7 @@
                     th:action="@{/ingredients/delete/{id} (id =${ingredient.id})}"
                     th:method="post"
                     id="delete-form"
+                    sec:authorize="hasAuthority('ADMIN')"
                   >
                     <button class="btn btn-danger" type="submit">
                       Elimina

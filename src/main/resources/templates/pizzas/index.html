@@ -10,9 +10,13 @@
   <body>
     <header th:replace="~{ fragments/fragments :: header}"></header>
     <main class="container text-center overflow-x-hidden">
+      <h6 th:text="'Benvenuto: '+${username}"></h6>
       <h1 class="mt-5 mb-3">ELENCO DELLE NOSTRE PIZZE IN 8 BIT</h1>
       <div class="d-flex container justify-content-between align-items-center">
-        <a th:href="@{/pizzas/create}" class="btn btn-xs btn-warning"
+        <a
+          th:href="@{/pizzas/create}"
+          class="btn btn-xs btn-warning"
+          sec:authorize="hasAuthority('ADMIN')"
           >Crea una Pizza</a
         >
 

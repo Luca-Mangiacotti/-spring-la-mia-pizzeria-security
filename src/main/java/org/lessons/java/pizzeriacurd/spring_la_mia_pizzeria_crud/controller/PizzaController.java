@@ -3,6 +3,7 @@ package org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.controller;
 import org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.service.IngredientService;
 import org.lessons.java.pizzeriacurd.spring_la_mia_pizzeria_crud.service.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,7 +34,8 @@ public class PizzaController {
     // INDEX DEI PRODOTTI (INDEX)
 
     @GetMapping
-    public String index(@RequestParam(name = "keyword", required = false) String keyword, Model model) {
+    public String index(@RequestParam(name = "keyword", required = false) String keyword, Model model,
+            Authentication authentication) {
 
         // con questo comando è come fare una query SELECT * from pizzas e li trasforma
         // in una lista di tipo Pizza
@@ -45,6 +47,7 @@ public class PizzaController {
         }
         model.addAttribute("pizzas", pizzas);
         model.addAttribute("keyword", keyword);
+        model.addAttribute("username", authentication.getName());
 
         return "pizzas/index";
     }

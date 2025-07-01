@@ -41,7 +41,7 @@
          DI UN BOTTONE CHE FUNGERà DA SUBMIT IN UN FORM CON IL METODO "POST" -->
 
         <!-- Button trigger modal -->
-        <div>
+        <div sec:authorize="hasAuthority('ADMIN')">
           <button
             type="button"
             class="btn btn-danger"
@@ -127,6 +127,7 @@
                     <a
                       th:href="@{/offers/edit/{id} (id=*{id})}"
                       class="btn btn-warning btn-sm"
+                      sec:authorize="hasAuthority('ADMIN')"
                     >
                       Modifica</a
                     >
@@ -136,6 +137,7 @@
                     th:action="@{/offers/delete/{id} (id =*{id})}"
                     th:method="post"
                     th:id="*{id}"
+                    sec:authorize="hasAuthority('ADMIN')"
                   >
                     <button class="btn btn-danger" type="submit">
                       Elimina
