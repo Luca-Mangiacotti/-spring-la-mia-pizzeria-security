@@ -26,13 +26,14 @@
         <p th:unless="*{ingredients.size()}" >Non ci sono ingredienti</p>
       </div>
 
-      <div class="d-flex justify-content-center gap-5">
+      <div class="d-flex justify-content-center gap-5" sec:authorize="hasAuthority('ADMIN')">
         <a th:href="@{/pizzas/edit/} + *{id}" class="btn btn-warning mb-5"
           >Modifica</a
         >
         <a
           th:href="@{/pizzas/{id}/offer(id = ${pizza.id})}"
           class="btn btn-warning mb-5"
+          sec:authorize="hasAuthority('ADMIN')"
           >Aggiungi Offerta</a
         >
         <!-- PER EFFETTUARE UNA DELETE DEL PRODOTTO DOBBIAMO NECESSARIAMENTE UTILIZZARE UN FORM
